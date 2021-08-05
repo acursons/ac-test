@@ -1,0 +1,16 @@
+#cloud-config
+packages:
+  - haproxy
+  - nginx
+runcmd:
+  - systemctl enable haproxy
+  - systemctl stop firewalld
+  - systemctl disable firewalld
+  - setenforce 0
+write_files:
+  - path: /etc/motd
+    permissions: 0644
+    owner: root
+    content: |
+    Hello World
+    Line 2
